@@ -29,8 +29,7 @@ steps:
           --name "$(functionAppName)" \
           --settings \
             AzureWebJobsStorage__accountName="$(storageAccountName)" \
-            AzureWebJobsStorage__credential=managedidentity \
-            AzureWebJobsStorage__blobServiceUri="https://$(storageAccountName).blob.core.windows.net/"
+            AzureWebJobsStorage__credential=managedidentity
             
   - task: UseDotNet@2
     displayName: 'Install .NET 10.0 SDK'
