@@ -17,6 +17,20 @@ steps:
           --default-action Allow \
           --scm-default-action Allow
 
+  - task: AzureCLI@2
+    displayName: 'Configure Function App storage account'
+    inputs:
+      azureSubscription: '$(azureServiceConnection)'
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        az functionapp config appsettings set \
+          --resource-group "$(resourceGroupName)" \
+          --name "$(functionAppName)" \
+          --settings \
+            AzureWebJobsStorage__accountName="$(storageAccountName)" \
+            AzureWebJobsStorage__credential=managedidentity"
+
   - task: UseDotNet@2
     displayName: 'Install .NET 10.0 SDK'
     inputs:
