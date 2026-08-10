@@ -29,15 +29,7 @@ builder.Services.AddOpenTelemetry()
         tracing.AddHttpClientInstrumentation();
     });
 
-// Get the client ID for the user-assigned managed identity from environment variables
-var clientId = Environment.GetEnvironmentVariable("AzureWebJobsStorage__clientId");
-
-var credentialOptions = new DefaultAzureCredentialOptions
-{
-    ManagedIdentityClientId = clientId
-};
-
-var credential = new DefaultAzureCredential(credentialOptions);
+var credential = new DefaultAzureCredential();
 
 builder.Services.AddOpenTelemetry().UseAzureMonitorExporter(options =>
 {
