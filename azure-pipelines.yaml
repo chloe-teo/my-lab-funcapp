@@ -1,0 +1,31 @@
+pool:
+  vmImage: 'ubuntu-latest'
+steps:
+  - task: UseDotNet@2
+    displayName: 'Install .NET 8.0 SDK'
+    inputs:
+      packageType: 'sdk'
+      version: '8.0.x'
+      installationPath: $(Agent.ToolsDirectory)/dotnet
+  - script: |
+      dotnet restore $(System.DefaultWorkingDirectory)/src
+      dotnet build --configuration Release
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet publish'
+    inputs:
+      command: publish
+      arguments: '--configuration Release --output $(System.DefaultWorkingDirectory)/publish_output'
+      projects: 'csharp/*.csproj'
+      publishWebProjects: false
+      modifyOutputPath: false
+      zipAfterPublish: false
+  - task: ArchiveFiles@2
+    displayName: "Archive files"
+    inputs:
+      rootFolderOrFile: "$(System.DefaultWorkingDirectory)/publish_output"
+      includeRootFolder: false
+      archiveFile: "$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip"
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
+      artifactName: 'drop'
