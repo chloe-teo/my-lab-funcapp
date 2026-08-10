@@ -1,31 +1,76 @@
+variables:
+ - group: my-lab-func-app
+
 pool:
   vmImage: 'ubuntu-latest'
 steps:
+  - task: AzureCLI@2
+    displayName: 'Temporarily allow pipeline deployment access'
+    inputs:
+      azureSubscription: '$(azureServiceConnection)'
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        az functionapp config access-restriction set \
+          --resource-group "$(resourceGroupName)" \
+          --name "$(functionAppName)" \
+          --default-action Allow \
+          --scm-default-action Allow
+
   - task: UseDotNet@2
-    displayName: 'Install .NET 8.0 SDK'
+    displayName: 'Install .NET 10.0 SDK'
     inputs:
       packageType: 'sdk'
-      version: '8.0.x'
+      version: '10.0.x'
       installationPath: $(Agent.ToolsDirectory)/dotnet
+
   - script: |
       dotnet restore $(System.DefaultWorkingDirectory)/src
-      dotnet build --configuration Release
+      dotnet build $(System.DefaultWorkingDirectory)/src/$(appName).csproj --configuration Release --no-restore
+
   - task: DotNetCoreCLI@2
     displayName: 'dotnet publish'
     inputs:
       command: publish
       arguments: '--configuration Release --output $(System.DefaultWorkingDirectory)/publish_output'
-      projects: 'csharp/*.csproj'
+      projects: 'src/mylabfuncapp.csproj'
       publishWebProjects: false
       modifyOutputPath: false
       zipAfterPublish: false
+
   - task: ArchiveFiles@2
     displayName: "Archive files"
     inputs:
       rootFolderOrFile: "$(System.DefaultWorkingDirectory)/publish_output"
       includeRootFolder: false
-      archiveFile: "$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip"
-  - task: PublishBuildArtifacts@1
+      archiveFile: "$(System.DefaultWorkingDirectory)/$(appName)-$(Build.BuildId).zip"
+
+  - script: |
+      echo "Zip file: $(System.DefaultWorkingDirectory)/$(appName)-$(Build.BuildId).zip"
+      echo "Zip directory: $(System.DefaultWorkingDirectory)"
+      ls -lh "$(System.DefaultWorkingDirectory)/$(appName)-$(Build.BuildId).zip"
+      unzip -l "$(System.DefaultWorkingDirectory)/$(appName)-$(Build.BuildId).zip"
+    displayName: 'Show zip file path and contents'
+
+  - task: AzureFunctionApp@2
+    displayName: 'Deploy Azure Function'
     inputs:
-      PathtoPublish: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
-      artifactName: 'drop'
+      azureSubscription: '$(azureServiceConnection)'
+      appType: 'functionAppLinux'
+      isFlexConsumption: true
+      appName: '$(functionAppName)'
+      package: '$(System.DefaultWorkingDirectory)/$(appName)-$(Build.BuildId).zip'
+
+  - task: AzureCLI@2
+    displayName: 'Restore Function App network restrictions'
+    condition: always()
+    inputs:
+      azureSubscription: '$(azureServiceConnection)'
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        az functionapp config access-restriction set \
+          --resource-group "$(resourceGroupName)" \
+          --name "$(functionAppName)" \
+          --default-action Deny \
+          --scm-default-action Deny
