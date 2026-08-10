@@ -18,7 +18,7 @@ steps:
           --scm-default-action Allow
 
   - task: AzureCLI@2
-    displayName: 'Configure Function App storage account'
+    displayName: 'Configure Function App Settings'
     inputs:
       azureSubscription: '$(azureServiceConnection)'
       scriptType: bash
@@ -42,9 +42,10 @@ steps:
   - script: |
       dotnet restore $(System.DefaultWorkingDirectory)/src
       dotnet build $(System.DefaultWorkingDirectory)/src/$(appName).csproj --configuration Release --no-restore
+    displayName: 'Dotnet Restore and Build'
 
   - task: DotNetCoreCLI@2
-    displayName: 'dotnet publish'
+    displayName: 'Dotnet Publish'
     inputs:
       command: publish
       arguments: '--configuration Release --output $(System.DefaultWorkingDirectory)/publish_output'
