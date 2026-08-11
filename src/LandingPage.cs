@@ -42,7 +42,7 @@ public class LandingPage
                 <figure><img src="/assets/func-app-architecture.png" alt="Function app architecture diagram"><figcaption>This diagram shows how the Azure Function App connects the from code to deployment pipeline, the azure resource component used in this project for a secured Azure Function app within private network and telemetry send to Azure App Insights.</figcaption></figure>
                 <figure><img src="/assets/terraform-modules.png" alt="Terraform module resource map"><figcaption>This map shows the Azure resources created and connected by the Terraform module. It makes the infrastructure boundaries and deployment relationships easier to understand.</figcaption></figure>
               </section>
-              <nav><a href="/api/first_http_function">Try the first function</a><a href="/api/second_http_function">Try the second function</a></nav>
+              <nav><a href="/api/first_http_function">Try the first function</a><a href="/api/second_http_function">Try the second function</a><a href="/api/third_http_function">Try the third function (exception)</a></nav>
             </main></body>
             </html>
             """);
