@@ -7,7 +7,7 @@ namespace MyLabFuncApp;
 public class LandingPage
 {
     [Function("landing_page")]
-    public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "")] HttpRequestData req)
+    public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "index")] HttpRequestData req)
     {
         var response = req.CreateResponse(HttpStatusCode.OK);
         response.Headers.Add("Content-Type", "text/html; charset=utf-8");
