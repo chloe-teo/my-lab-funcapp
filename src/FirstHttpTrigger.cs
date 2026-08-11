@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
@@ -20,6 +21,13 @@ public class FirstHttpTrigger
     public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "api/first_http_function")] HttpRequestData req)
     {
+        var activity = Activity.Current;
+        if (activity != null)
+        {
+            activity.SetTag("function.name", "first_http_function");
+            activity.SetTag("function.trigger", "http");
+        }
+
         _logger.LogInformation("first_http_function function processed a request.");
 
         // Build base URI from the incoming request
