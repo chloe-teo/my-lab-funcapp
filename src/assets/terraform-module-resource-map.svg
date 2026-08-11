@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">Terraform modules and Azure resources for the Function App project</title>
+  <desc id="desc">The root Terraform project composes reusable Azure modules for networking, observability, and a Function App. Arrows show module composition and resource relationships.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbfdff"/><stop offset="1" stop-color="#edf6f4"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#164e63" flood-opacity="0.12"/></filter>
+    <marker id="blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#0e7490"/></marker>
+    <marker id="green" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#16805b"/></marker>
+    <marker id="orange" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#c2410c"/></marker>
+    <style>
+      .title { font: 700 31px 'Segoe UI', sans-serif; fill: #0f172a; }
+      .box { font: 700 19px 'Segoe UI', sans-serif; fill: #0f172a; }
+      .copy { font: 400 16px 'Segoe UI', sans-serif; fill: #475569; }
+      .tiny { font: 700 13px 'Segoe UI', sans-serif; fill: #64748b; letter-spacing: 1.4px; }
+      .white { font: 700 15px 'Segoe UI', sans-serif; fill: white; letter-spacing: 1.4px; }
+      .resource { font: 700 17px 'Segoe UI', sans-serif; fill: #0f172a; }
+    </style>
+  </defs>
+  <rect width="1600" height="980" fill="url(#bg)"/>
+  <circle cx="1480" cy="120" r="230" fill="#d7f0e7" opacity="0.65"/><circle cx="80" cy="900" r="200" fill="#d9eef5" opacity="0.6"/>
+  <text x="80" y="75" class="tiny">TERRAFORM MODULE MAP</text>
+  <text x="80" y="122" class="title">Reusable modules to Azure resources</text>
+  <text x="80" y="155" class="copy">The root configuration composes local modules, then connects the resulting resources with private networking, identity, and telemetry.</text>
+
+  <rect x="70" y="215" width="330" height="600" rx="18" fill="#fff" stroke="#94a3b8" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="70" y="215" width="330" height="58" rx="18" fill="#334155"/><rect x="70" y="252" width="330" height="21" fill="#334155"/>
+  <text x="100" y="251" class="white">ROOT CONFIGURATION</text>
+  <rect x="105" y="315" width="260" height="115" rx="12" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="132" y="355" class="box">my-function-app</text><text x="132" y="385" class="copy">infra-src/main.tf</text><text x="132" y="411" class="copy">wires modules and policies</text>
+  <text x="105" y="490" class="tiny">DIRECT RESOURCES</text>
+  <text x="105" y="523" class="copy">Private Endpoint</text><text x="105" y="550" class="copy">Role Assignments (RBAC)</text><text x="105" y="577" class="copy">Private DNS module link</text>
+  <text x="105" y="650" class="tiny">INPUTS</text><text x="105" y="682" class="copy">dev terraform.tfvars</text><text x="105" y="709" class="copy">AzureRM provider</text><text x="105" y="736" class="copy">tags and network rules</text>
+
+  <rect x="490" y="215" width="410" height="600" rx="18" fill="#fff" stroke="#67e8f9" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="490" y="215" width="410" height="58" rx="18" fill="#0e7490"/><rect x="490" y="252" width="410" height="21" fill="#0e7490"/>
+  <text x="520" y="251" class="white">REUSABLE AZURE MODULES</text>
+  <rect x="530" y="305" width="340" height="105" rx="12" fill="#ecfeff" stroke="#a5f3fc"/><text x="555" y="342" class="box">azure-function-app</text><text x="555" y="370" class="copy">Function App + plan + storage</text><text x="555" y="395" class="copy">managed identity and settings</text>
+  <rect x="530" y="440" width="160" height="95" rx="12" fill="#ecfeff" stroke="#a5f3fc"/><text x="552" y="476" class="box">azure-vnet</text><text x="552" y="505" class="copy">VNet, subnets, NSGs</text>
+  <rect x="710" y="440" width="160" height="95" rx="12" fill="#ecfeff" stroke="#a5f3fc"/><text x="732" y="476" class="box">app-insight</text><text x="732" y="505" class="copy">Telemetry workspace</text>
+  <rect x="530" y="565" width="160" height="95" rx="12" fill="#ecfeff" stroke="#a5f3fc"/><text x="552" y="601" class="box">private-dns</text><text x="552" y="630" class="copy">Zone + VNet link</text>
+  <rect x="710" y="565" width="160" height="95" rx="12" fill="#ecfeff" stroke="#a5f3fc"/><text x="732" y="601" class="box">resource-group</text><text x="732" y="630" class="copy">Shared RG primitive</text>
+  <text x="530" y="716" class="tiny">COMPOSITION</text><text x="530" y="747" class="copy">Function, VNet and Insights modules</text><text x="530" y="774" class="copy">reuse the resource-group module.</text>
+
+  <rect x="990" y="215" width="540" height="600" rx="18" fill="#fff" stroke="#86efac" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="990" y="215" width="540" height="58" rx="18" fill="#16805b"/><rect x="990" y="252" width="540" height="21" fill="#16805b"/>
+  <text x="1020" y="251" class="white">AZURE RESOURCE INVENTORY</text>
+  <rect x="1030" y="305" width="215" height="105" rx="12" fill="#f0fdf4" stroke="#bbf7d0"/><text x="1055" y="340" class="resource">Function runtime</text><text x="1055" y="370" class="copy">azurerm_function_app_</text><text x="1055" y="394" class="copy">flex_consumption</text>
+  <rect x="1270" y="305" width="215" height="105" rx="12" fill="#f0fdf4" stroke="#bbf7d0"/><text x="1295" y="340" class="resource">Blob Storage</text><text x="1295" y="370" class="copy">storage account</text><text x="1295" y="394" class="copy">and containers</text>
+  <rect x="1030" y="440" width="215" height="105" rx="12" fill="#f0fdf4" stroke="#bbf7d0"/><text x="1055" y="475" class="resource">Network boundary</text><text x="1055" y="505" class="copy">VNet, subnets, NSGs</text><text x="1055" y="529" class="copy">private endpoint</text>
+  <rect x="1270" y="440" width="215" height="105" rx="12" fill="#f0fdf4" stroke="#bbf7d0"/><text x="1295" y="475" class="resource">Observability</text><text x="1295" y="505" class="copy">Application Insights</text><text x="1295" y="529" class="copy">connection string</text>
+  <rect x="1030" y="575" width="455" height="105" rx="12" fill="#f0fdf4" stroke="#bbf7d0"/><text x="1055" y="610" class="resource">Platform controls</text><text x="1055" y="640" class="copy">Resource group, private DNS zone, managed identity</text><text x="1055" y="664" class="copy">Storage Blob Data Owner + Metrics Publisher roles</text>
+  <text x="1030" y="735" class="tiny">RUNTIME RELATIONSHIPS</text><text x="1030" y="766" class="copy">Function -&gt; Blob Storage (private endpoint + RBAC)</text><text x="1030" y="793" class="copy">Function -&gt; Application Insights (telemetry)</text>
+
+  <path d="M400 370 H480" fill="none" stroke="#0e7490" stroke-width="4" marker-end="url(#blue)"/><text x="410" y="350" class="tiny">CALLS</text>
+  <path d="M400 560 C450 560 445 355 520 355" fill="none" stroke="#0e7490" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#blue)"/>
+  <path d="M900 355 H980" fill="none" stroke="#16805b" stroke-width="4" marker-end="url(#green)"/><text x="912" y="335" class="tiny">CREATES</text>
+  <path d="M900 487 H980" fill="none" stroke="#16805b" stroke-width="4" marker-end="url(#green)"/>
+  <path d="M900 612 H980" fill="none" stroke="#c2410c" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#orange)"/><text x="910" y="592" class="tiny">SECURES</text>
+  <path d="M900 700 C950 700 940 628 1020 628" fill="none" stroke="#c2410c" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#orange)"/>
+  <text x="80" y="905" class="tiny">LEGEND</text><line x1="180" y1="900" x2="235" y2="900" stroke="#0e7490" stroke-width="4"/><text x="250" y="906" class="copy">module composition</text><line x1="470" y1="900" x2="525" y2="900" stroke="#16805b" stroke-width="4"/><text x="540" y="906" class="copy">resource creation</text><line x1="750" y1="900" x2="805" y2="900" stroke="#c2410c" stroke-width="3" stroke-dasharray="8 8"/><text x="820" y="906" class="copy">security and runtime relationship</text>
+</svg>

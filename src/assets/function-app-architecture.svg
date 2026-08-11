@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">End-to-end Azure Function App delivery architecture</title>
+  <desc id="desc">Terraform provisions Azure infrastructure. Azure DevOps builds and deploys the function app to Azure Functions, which uses Blob Storage through a private endpoint and reports to Application Insights.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8fbff"/><stop offset="1" stop-color="#eaf3f7"/></linearGradient>
+    <linearGradient id="azure" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#087fbd"/><stop offset="1" stop-color="#075985"/></linearGradient>
+    <linearGradient id="delivery" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f59e0b"/><stop offset="1" stop-color="#d97706"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#164e63" flood-opacity="0.12"/></filter>
+    <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#087fbd"/></marker>
+    <marker id="arrow-orange" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#d97706"/></marker>
+    <style>
+      .heading { font: 700 30px 'Segoe UI', sans-serif; fill: #0f172a; }
+      .label { font: 600 20px 'Segoe UI', sans-serif; fill: #0f172a; }
+      .body { font: 400 17px 'Segoe UI', sans-serif; fill: #475569; }
+      .small { font: 600 14px 'Segoe UI', sans-serif; fill: #64748b; letter-spacing: 1.4px; }
+      .stage { font: 700 15px 'Segoe UI', sans-serif; fill: #fff; letter-spacing: 1.5px; }
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="url(#background)"/>
+  <circle cx="1450" cy="60" r="210" fill="#cdebf2" opacity="0.45"/><circle cx="80" cy="850" r="180" fill="#d9f0e6" opacity="0.55"/>
+  <text x="90" y="80" class="small">END-TO-END DELIVERY BLUEPRINT</text>
+  <text x="90" y="125" class="heading">Azure Function App: from code to runtime</text>
+  <text x="90" y="158" class="body">Infrastructure is provisioned with Terraform, then Azure DevOps delivers the application into a private Azure runtime.</text>
+
+  <rect x="70" y="205" width="360" height="570" rx="18" fill="#fff" stroke="#cbd5e1" stroke-width="2" filter="url(#shadow)"/><rect x="70" y="205" width="360" height="54" rx="18" fill="#334155"/><rect x="70" y="241" width="360" height="18" fill="#334155"/>
+  <text x="100" y="240" class="stage">SOURCE AND PLATFORM</text>
+  <rect x="105" y="300" width="290" height="105" rx="12" fill="#f1f5f9" stroke="#cbd5e1"/><text x="135" y="340" class="label">Application code</text><text x="135" y="371" class="body">Function source + configuration</text><text x="135" y="394" class="body">stored in Git repository</text>
+  <rect x="105" y="455" width="290" height="105" rx="12" fill="#f1f5f9" stroke="#cbd5e1"/><text x="135" y="495" class="label">Terraform modules</text><text x="135" y="526" class="body">VNet, storage, plan, function,</text><text x="135" y="549" class="body">private DNS and RBAC</text>
+  <text x="105" y="630" class="small">PROVISION</text><text x="105" y="660" class="body">terraform init / validate</text><text x="105" y="686" class="body">terraform plan / apply</text><text x="105" y="735" class="body">AzureRM provider</text>
+
+  <rect x="540" y="205" width="360" height="570" rx="18" fill="#fff" stroke="#fbbf24" stroke-width="2" filter="url(#shadow)"/><rect x="540" y="205" width="360" height="54" rx="18" fill="url(#delivery)"/><rect x="540" y="241" width="360" height="18" fill="url(#delivery)"/>
+  <text x="570" y="240" class="stage">CONTINUOUS DELIVERY</text>
+  <rect x="575" y="300" width="290" height="105" rx="12" fill="#fff7e6" stroke="#fcd34d"/><text x="605" y="340" class="label">Azure DevOps</text><text x="605" y="371" class="body">CI/CD pipeline</text><text x="605" y="394" class="body">triggered by source changes</text>
+  <rect x="575" y="455" width="290" height="105" rx="12" fill="#fff7e6" stroke="#fcd34d"/><text x="605" y="495" class="label">Build and release</text><text x="605" y="526" class="body">Install dependencies, test,</text><text x="605" y="549" class="body">package and publish</text>
+  <text x="575" y="630" class="small">DELIVER</text><text x="575" y="660" class="body">Azure service connection</text><text x="575" y="686" class="body">Function package deployment</text><text x="575" y="735" class="body">Repeatable promotion to Azure</text>
+
+  <rect x="1010" y="205" width="520" height="570" rx="18" fill="#fff" stroke="#67e8f9" stroke-width="2" filter="url(#shadow)"/><rect x="1010" y="205" width="520" height="54" rx="18" fill="url(#azure)"/><rect x="1010" y="241" width="520" height="18" fill="url(#azure)"/>
+  <text x="1040" y="240" class="stage">AZURE RUNTIME</text>
+  <rect x="1050" y="300" width="440" height="115" rx="12" fill="#e6f7fb" stroke="#67e8f9"/><text x="1080" y="340" class="label">Azure Function App</text><text x="1080" y="371" class="body">Flex Consumption + managed identity</text><text x="1080" y="396" class="body">VNet integration and HTTPS only</text>
+  <rect x="1050" y="465" width="205" height="115" rx="12" fill="#e6f7fb" stroke="#67e8f9"/><text x="1080" y="505" class="label">Blob Storage</text><text x="1080" y="536" class="body">Function package</text><text x="1080" y="561" class="body">and containers</text>
+  <rect x="1285" y="465" width="205" height="115" rx="12" fill="#e6f7fb" stroke="#67e8f9"/><text x="1315" y="505" class="label">Observability</text><text x="1315" y="536" class="body">Application</text><text x="1315" y="561" class="body">Insights</text>
+  <text x="1050" y="650" class="small">PROTECTED NETWORK</text><text x="1050" y="680" class="body">Private endpoint for Blob Storage</text><text x="1050" y="707" class="body">Private DNS: privatelink.blob.core.windows.net</text><text x="1050" y="752" class="body">RBAC: Function identity -&gt; Storage Blob Data Owner</text>
+
+  <path d="M430 370 H530" fill="none" stroke="#087fbd" stroke-width="4" marker-end="url(#arrow-blue)"/><text x="448" y="350" class="small">PROVISION</text>
+  <path d="M430 510 H530" fill="none" stroke="#087fbd" stroke-width="4" marker-end="url(#arrow-blue)"/><text x="450" y="490" class="small">TRIGGER</text>
+  <path d="M900 370 H1000" fill="none" stroke="#d97706" stroke-width="4" marker-end="url(#arrow-orange)"/><text x="917" y="350" class="small">DEPLOY</text>
+  <path d="M900 510 H1000" fill="none" stroke="#d97706" stroke-width="4" marker-end="url(#arrow-orange)"/><text x="914" y="490" class="small">PACKAGE</text>
+  <path d="M1150 415 V455" fill="none" stroke="#087fbd" stroke-width="4" marker-end="url(#arrow-blue)"/><path d="M1355 415 V455" fill="none" stroke="#087fbd" stroke-width="4" marker-end="url(#arrow-blue)"/>
+  <text x="75" y="845" class="small">ARCHITECTURE OVERVIEW</text><text x="295" y="845" class="body">Terraform creates the platform; Azure DevOps ships the workload; Azure runs and secures it.</text>
+</svg>
