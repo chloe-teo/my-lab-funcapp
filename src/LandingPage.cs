@@ -28,16 +28,15 @@ public class LandingPage
                 nav { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
                 a { padding: 12px 16px; border: 1px solid #54716f; color: #f7f2e8; text-decoration: none; font: 600 14px system-ui, sans-serif; }
                 a:hover { border-color: #f2a65a; color: #f2a65a; }
-                .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 48px; }
+                .gallery { display: grid; grid-template-columns: minmax(0, 1fr); gap: 42px; margin-top: 48px; }
                 figure { margin: 0; }
                 img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: #f7f2e8; border: 1px solid #54716f; }
                 figcaption { margin-top: 14px; color: #bed0cc; font: 16px/1.55 system-ui, sans-serif; }
-                @media (max-width: 700px) { .gallery { grid-template-columns: 1fr; } }
               </style>
             </head>
             <body><main>
               <div class="eyebrow">Welcome to Chloe's My Lab Functions</div>
-              <h2>Small functions.<br>Useful experiments.</h2>
+              <h3>Small functions.<br>Useful experiments.</h3>
               <p>An end-to-end lab for provisioning Azure infrastructure with Terraform, deploying a .NET function app, and observing it with OpenTelemetry.</p>
               <section class="gallery" aria-label="Architecture diagrams">
                 <figure><img src="/assets/func-app-architecture.png" alt="Function app architecture diagram"><figcaption>This diagram shows how the Azure Function App connects the from code to deployment pipeline, the azure resource component used in this project for a secured Azure Function app within private network and telemetry send to Azure App Insights.</figcaption></figure>
