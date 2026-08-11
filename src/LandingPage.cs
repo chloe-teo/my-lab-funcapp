@@ -40,12 +40,13 @@ public class LandingPage
               <div class="eyebrow">Welcome to Chloe's My Lab Functions</div>
               <h3>Small functions.<br>Useful experiments.</h3>
               <p>An end-to-end lab for provisioning Azure infrastructure with Terraform, deploying a .NET function app, and observing it with OpenTelemetry.</p>
+              <nav aria-label="Project links"><a class="external-link" href="https://github.com/chloe-teo/my-function-app" target="_blank" rel="noopener noreferrer">Terraform infrastructure ↗️</a><a class="external-link" href="https://github.com/chloe-teo/my-lab-funcapp" target="_blank" rel="noopener noreferrer">This app's code ↗️</a><a class="external-link" href="https://chloe-teo.github.io/" target="_blank" rel="noopener noreferrer">Chloe's portfolio ↗️</a></nav>
               <section class="gallery" aria-label="Architecture and observability diagrams">
                 <figure><img src="/assets/func-app-architecture.png" alt="Function app architecture diagram"><figcaption>This diagram shows how the Azure Function App connects the from code to deployment pipeline, the azure resource component used in this project for a secured Azure Function app within private network and telemetry send to Azure App Insights.</figcaption></figure>
                 <figure><img src="/assets/terraform-modules.png" alt="Terraform module resource map"><figcaption>This map shows the Azure resources created and connected by the Terraform module. It makes the infrastructure boundaries and deployment relationships easier to understand.</figcaption></figure>
                 <figure><img src="/assets/azure-monitor-workbook.png" alt="Azure Monitor workbook showing latency percentiles and exception counts per function"><figcaption>This Azure Monitor workbook shows observability for the function app, including latency by percentile and exception counts for each function.</figcaption></figure>
               </section>
-              <nav><a href="/api/first_http_function">Try the first function</a><a href="/api/second_http_function">Try the second function</a><a href="/api/third_http_function">Try the third function (exception)</a><a class="external-link" href="https://github.com/chloe-teo/my-function-app" target="_blank" rel="noopener noreferrer">Terraform infrastructure ↗️</a><a class="external-link" href="https://github.com/chloe-teo/my-lab-funcapp" target="_blank" rel="noopener noreferrer">This app's code ↗️</a><a class="external-link" href="https://chloe-teo.github.io/" target="_blank" rel="noopener noreferrer">Chloe's portfolio ↗️</a></nav>
+              <nav aria-label="Function links"><a href="/api/first_http_function">Try the first function</a><a href="/api/second_http_function">Try the second function</a><a href="/api/third_http_function">Try the third function (exception)</a></nav>
             </main></body>
             </html>
             """);
