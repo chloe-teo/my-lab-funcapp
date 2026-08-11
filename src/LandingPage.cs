@@ -28,6 +28,8 @@ public class LandingPage
                 nav { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
                 a { padding: 12px 16px; border: 1px solid #54716f; color: #f7f2e8; text-decoration: none; font: 600 14px system-ui, sans-serif; }
                 a:hover { border-color: #f2a65a; color: #f2a65a; }
+                .external-link { border-color: #b86f52; color: #f2b880; }
+                .external-link:hover { border-color: #f2b880; color: #ffd7a8; }
                 .gallery { display: grid; grid-template-columns: minmax(0, 1fr); gap: 42px; margin-top: 48px; }
                 figure { margin: 0; }
                 img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: #f7f2e8; border: 1px solid #54716f; }
@@ -38,11 +40,12 @@ public class LandingPage
               <div class="eyebrow">Welcome to Chloe's My Lab Functions</div>
               <h3>Small functions.<br>Useful experiments.</h3>
               <p>An end-to-end lab for provisioning Azure infrastructure with Terraform, deploying a .NET function app, and observing it with OpenTelemetry.</p>
-              <section class="gallery" aria-label="Architecture diagrams">
+              <section class="gallery" aria-label="Architecture and observability diagrams">
                 <figure><img src="/assets/func-app-architecture.png" alt="Function app architecture diagram"><figcaption>This diagram shows how the Azure Function App connects the from code to deployment pipeline, the azure resource component used in this project for a secured Azure Function app within private network and telemetry send to Azure App Insights.</figcaption></figure>
                 <figure><img src="/assets/terraform-modules.png" alt="Terraform module resource map"><figcaption>This map shows the Azure resources created and connected by the Terraform module. It makes the infrastructure boundaries and deployment relationships easier to understand.</figcaption></figure>
+                <figure><img src="/assets/azure-monitor-workbook.png" alt="Azure Monitor workbook showing latency percentiles and exception counts per function"><figcaption>This Azure Monitor workbook shows observability for the function app, including latency by percentile and exception counts for each function.</figcaption></figure>
               </section>
-              <nav><a href="/api/first_http_function">Try the first function</a><a href="/api/second_http_function">Try the second function</a><a href="/api/third_http_function">Try the third function (exception)</a></nav>
+              <nav><a href="/api/first_http_function">Try the first function</a><a href="/api/second_http_function">Try the second function</a><a href="/api/third_http_function">Try the third function (exception)</a><a class="external-link" href="https://github.com/chloe-teo/my-function-app" target="_blank" rel="noopener noreferrer">Terraform infrastructure ↗️</a><a class="external-link" href="https://github.com/chloe-teo/my-lab-funcapp" target="_blank" rel="noopener noreferrer">This app's code ↗️</a><a class="external-link" href="https://chloe-teo.github.io/" target="_blank" rel="noopener noreferrer">Chloe's portfolio ↗️</a></nav>
             </main></body>
             </html>
             """);
@@ -55,6 +58,7 @@ public class LandingPage
         var allowedFiles = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
           ["func-app-architecture.png"] = "image/png",
+          ["azure-monitor-workbook.png"] = "image/png",
           ["terraform-modules.png"] = "image/png"
         };
 
