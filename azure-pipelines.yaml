@@ -40,6 +40,7 @@ steps:
 
   - script: |
       dotnet restore $(System.DefaultWorkingDirectory)/src
+      dotnet clean $(System.DefaultWorkingDirectory)/src/$(appName).csproj --configuration Release
       dotnet build $(System.DefaultWorkingDirectory)/src/$(appName).csproj --configuration Release --no-restore
     displayName: 'Dotnet Restore and Build'
 
