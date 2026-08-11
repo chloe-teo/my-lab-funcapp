@@ -15,7 +15,7 @@ public class SecondHttpTrigger
     }
 
     [Function("second_http_function")]
-    public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req)
+    public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "api/second_http_function")] HttpRequestData req)
     {
         _logger.LogInformation("second_http_function function processed a request.");
 

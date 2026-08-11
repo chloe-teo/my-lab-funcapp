@@ -16,9 +16,9 @@ public class FirstHttpTrigger
         _httpClientFactory = httpClientFactory;
     }
 
-    [Function("first_http_function")]
+        [Function("first_http_function")]
     public async Task<IActionResult> Run(
-         [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "api/first_http_function")] HttpRequestData req)
     {
         _logger.LogInformation("first_http_function function processed a request.");
 
