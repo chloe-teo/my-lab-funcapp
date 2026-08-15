@@ -15,7 +15,7 @@ public class ThirdHttpTrigger
     }
 
     [Function("third_http_function")]
-    public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "api/third_http_function")] HttpRequestData req)
+    public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "api/third_http_function")] HttpRequestData req)
     {
         var activity = Activity.Current;
         if (activity != null)

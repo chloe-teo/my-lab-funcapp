@@ -16,7 +16,7 @@ public class SecondHttpTrigger
     }
 
     [Function("second_http_function")]
-    public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "api/second_http_function")] HttpRequestData req)
+    public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "api/second_http_function")] HttpRequestData req)
     {
         var activity = Activity.Current;
         if (activity != null)

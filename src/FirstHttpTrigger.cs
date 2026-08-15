@@ -19,7 +19,7 @@ public class FirstHttpTrigger
 
         [Function("first_http_function")]
     public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "api/first_http_function")] HttpRequestData req)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "api/first_http_function")] HttpRequestData req)
     {
         var activity = Activity.Current;
         if (activity != null)
